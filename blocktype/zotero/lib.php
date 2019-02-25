@@ -5,7 +5,7 @@
  * @subpackage blocktype-zotero
  * @author     Gregor Anzelj
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
- * @copyright  (C) 2012-2016 Gregor Anzelj, info@povsod.com
+ * @copyright  (C) 2012-2017 Gregor Anzelj, info@povsod.com
  *
  */
 
@@ -29,7 +29,7 @@ class PluginBlocktypeZotero extends PluginBlocktypeCloud {
         return array('external');
     }
 
-    public static function render_instance(BlockInstance $instance, $editing=false) {
+    public static function render_instance(BlockInstance $instance, $editing=false, $versioning=false) {
         $configdata = $instance->get('configdata');
         $viewid     = $instance->get('view');
         
@@ -104,7 +104,7 @@ class PluginBlocktypeZotero extends PluginBlocktypeCloud {
         return array('js/configform.js');
     }
 
-    public static function instance_config_form($instance) {
+    public static function instance_config_form(BlockInstance $instance) {
         global $USER;
         $instanceid = $instance->get('id');
         $configdata = $instance->get('configdata');
@@ -270,7 +270,7 @@ class PluginBlocktypeZotero extends PluginBlocktypeCloud {
 
     }
 
-    public static function save_config_options($form, $values) {
+    public static function save_config_options(Pieform $form, $values) {
         set_config_plugin('blocktype', 'zotero', 'consumerkey', $values['consumerkey']);
         set_config_plugin('blocktype', 'zotero', 'consumersecret', $values['consumersecret']);
     }
